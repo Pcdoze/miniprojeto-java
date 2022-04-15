@@ -24,6 +24,17 @@ public class Lista_Alunos extends Aluno {
 		return alunos[pos];
 	}
 	
+	public void buscaRGM(String chave) {
+
+		for(int i = 0; i < tamanho; i++) {
+			if(alunos[i].getRGM().compareTo(chave) == 0) {
+				System.out.println("Nome:\t" + alunos[i].getNome() + "\n");
+				return;
+			}
+		}
+		System.out.println("Aluno não existe\n");
+	}
+	
 	public boolean Compara(Aluno c1, Aluno c2) {
 		return(c1.nome.equals(c2.nome));
 	}

@@ -12,7 +12,6 @@ public class Principal {
 		for(int i = 0; i < 60; i++){
 			System.out.printf("\nInserir nome e RGM de aluno %d: (separados por espaço) ", i+1);
 				String[] entrada = scanner_principal.nextLine().split(" ");
-
 				
 				if(entrada.length == 2){
 					Aluno aluno = new Aluno();
@@ -26,8 +25,8 @@ public class Principal {
 				else if(entrada[0].compareTo("skip") == 0){
 					for(int j = i; j < 60; j++){
 						Aluno aluno = new Aluno();
-						aluno.nome = "nome";
-						aluno.rgm = String.format("%08d", j);
+						aluno.nome = "nome_"+Integer.toString(j+1);
+						aluno.rgm = String.format("%08d", j+1);
 
 						lista_de_rgms[j] = aluno.rgm;
 
@@ -88,9 +87,10 @@ public class Principal {
 			else if(lista_de_alunos.alunos[0].disciplinas == null){
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
-										"\n\t2 - Recriar Lista de Alunos"+
-										"\n\t3 - Remover Aluno"+
-										"\n\t4 - Sair");
+										"\n\t2 - Buscar na Lista de Alunos"+
+										"\n\t3 - Recriar Lista de Alunos"+
+										"\n\t4 - Remover Aluno"+
+										"\n\t5 - Sair");
 									
 				String opcao = scanner_principal.nextLine();
 
@@ -99,10 +99,14 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						break;
 					case "2":
+						String chave = scanner_principal.nextLine();
+						lista_de_alunos.buscaRGM(chave);
+						break;
+					case "3":
 						lista_de_alunos = criarListaDeAlunos();
 						System.out.println("Lista de Alunos criada");
 						break;
-					case "3":
+					case "4":
 						System.out.println("Digite o RGM: ");
 						String rgm_remover = scanner_principal.nextLine();
 						
@@ -111,7 +115,7 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						System.out.printf("\nAluno Removido: %s", aluno_removido);
 						break;
-					case "4":
+					case "5":
 						loop_principal = false;
 						break;
 					default:
