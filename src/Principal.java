@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Principal {
-	public static Scanner scanner_principal = new Scanner(System.in);;
+	public static Scanner scanner_principal = new Scanner(System.in);
 
 	public static Lista_Alunos criarListaDeAlunos(){
 		Lista_Alunos lista_de_alunos = new Lista_Alunos();
@@ -107,6 +107,8 @@ public class Principal {
 						String rgm_remover = scanner_principal.nextLine();
 						
 						String aluno_removido = lista_de_alunos.removerAlunoPorRGM(rgm_remover);
+
+						lista_de_alunos.exibirLista();
 						System.out.printf("\nAluno Removido: %s", aluno_removido);
 						break;
 					case "4":
