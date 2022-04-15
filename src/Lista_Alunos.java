@@ -71,6 +71,23 @@ public class Lista_Alunos extends Aluno {
 		tamanho--;
 		return aux;
 	}
+
+	public String removerAlunoPorRGM (String rgm) {
+		int pos = -1;
+
+		for(int i = 0; i < this.tamanho; i++){
+			if(this.alunos[i].rgm.compareTo(rgm) == 0){
+				pos = i;
+			}
+		}
+
+		if ((pos > tamanho) || (pos < 0))
+			return "RGM não existe";
+		Aluno aux = alunos[pos];
+		deslocarParaEsquerda(pos);
+		tamanho--;
+		return aux.getRGM();
+	}
 	
 	public void exibirLista() {
 		for (int i = 0; i < tamanho; i++)
