@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Lista_Alunos extends Aluno {
 
@@ -51,14 +52,18 @@ public class Lista_Alunos extends Aluno {
 			alunos[i] = alunos[i - 1];
 	}
 	
-	public boolean inserirAluno (int pos, Aluno c1) {
-		if (estaCheia() || (pos > tamanho) || (pos < 0))
-			return false;
+	public String inserirAluno (int pos, Aluno c1) {
+		if (estaCheia()){
+			return "Lista Cheia!";
+		}
+		else if((pos > tamanho) || (pos < 0)){
+			return "Posição inválida!";
+		}
 		deslocarParaDireita(pos);
 		alunos[pos] = c1;
 		tamanho++;
 
-		return true;
+		return "Adicinado";
 	}
 	
 	public void deslocarParaEsquerda(int pos) {
@@ -98,6 +103,29 @@ public class Lista_Alunos extends Aluno {
 		deslocarParaEsquerda(pos);
 		tamanho--;
 		return aux.getRGM();
+	}
+
+	public void ordenarListaPorRGM() {
+		String[] lista_de_rgms = new String[tamanho];
+
+		for(int i = 0; i < tamanho; i++){
+			lista_de_rgms[i] = alunos[i].getRGM();
+		}
+
+		Arrays.sort(lista_de_rgms);
+
+		Lista_Alunos lista_de_alunos_ordenada = new Lista_Alunos();
+
+		for(int x = 0; x < tamanho; x++){
+			for(int y = 0; y < tamanho; y++){
+				if(alunos[y].rgm.compareTo(lista_de_rgms[x]) == 0){
+					lista_de_alunos_ordenada.inserirAluno(x, alunos[y]);
+				}
+			}
+		}
+
+		this.alunos = lista_de_alunos_ordenada.alunos;
+		this.tamanho = lista_de_alunos_ordenada.tamanho;
 	}
 	
 	public void exibirLista() {
