@@ -67,11 +67,12 @@ public class Principal {
 			else if(lista_de_alunos.alunos[0].disciplinas == null){
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
-										"\n\t2 - Buscar na Lista de Alunos"+
-										"\n\t3 - Recriar Lista de Alunos"+
-										"\n\t4 - Adicionar Aluno"+
-										"\n\t5 - Remover Aluno"+
-										"\n\t6 - Sair");
+										"\n\t2 - Cadastrar Disciplinas"+
+										"\n\t3 - Buscar na Lista de Alunos"+
+										"\n\t4 - Recriar Lista de Alunos"+
+										"\n\t5 - Adicionar Aluno"+
+										"\n\t6 - Remover Aluno"+
+										"\n\t7 - Sair");
 									
 				String opcao = scanner_principal.nextLine();
 
@@ -79,15 +80,15 @@ public class Principal {
 					case "1":
 						lista_de_alunos.exibirLista();
 						break;
-					case "2":
+					case "3":
 						String chave = scanner_principal.nextLine();
 						lista_de_alunos.buscaRGM(chave);
 						break;
-					case "3":
+					case "4":
 						lista_de_alunos = criarListaDeAlunos();
 						System.out.println("Lista de Alunos criada");
 						break;
-					case "4":
+					case "5":
 						System.out.println("Digite nome e RGM: (separados por espaço)");
 						
 						String resultado;
@@ -108,7 +109,7 @@ public class Principal {
 
 						System.out.println("\n"+resultado);
 						break;
-					case "5":
+					case "6":
 						System.out.println("Digite o RGM: ");
 						String rgm_remover = scanner_principal.nextLine();
 						
@@ -117,7 +118,69 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						System.out.printf("\nAluno Removido: %s", aluno_removido);
 						break;
+					case "7":
+						loop_principal = false;
+						break;
+					default:
+						System.out.println("Opção Inválida");
+						break;
+				}
+			}
+			else{
+				System.out.println("\nSelecione uma opção:"+
+										"\n\t1 - Ver Lista de Alunos"+
+										"\n\t2 - Recadastrar Disciplinas"+
+										"\n\t3 - Buscar na Lista de Alunos"+
+										"\n\t4 - Recriar Lista de Alunos"+
+										"\n\t5 - Adicionar Aluno"+
+										"\n\t6 - Remover Aluno"+
+										"\n\t7 - Sair");
+									
+				String opcao = scanner_principal.nextLine();
+
+				switch (opcao) {
+					case "1":
+						lista_de_alunos.exibirLista();
+						break;
+					case "3":
+						String chave = scanner_principal.nextLine();
+						lista_de_alunos.buscaRGM(chave);
+						break;
+					case "4":
+						lista_de_alunos = criarListaDeAlunos();
+						System.out.println("Lista de Alunos criada");
+						break;
+					case "5":
+						System.out.println("Digite nome e RGM: (separados por espaço)");
+						
+						String resultado;
+						String[] entrada = scanner_principal.nextLine().split(" ");
+						if(entrada.length == 2){
+							Aluno aluno = new Aluno();
+							aluno.nome = entrada[0];
+							aluno.rgm = entrada[1];
+
+							resultado = lista_de_alunos.inserirAluno(0, aluno);
+
+							lista_de_alunos.ordenarListaPorRGM();
+						lista_de_alunos.exibirLista();
+						}
+						else{
+							resultado = "Entrada Inválida";
+						}
+
+						System.out.println("\n"+resultado);
+						break;
 					case "6":
+						System.out.println("Digite o RGM: ");
+						String rgm_remover = scanner_principal.nextLine();
+						
+						String aluno_removido = lista_de_alunos.removerAlunoPorRGM(rgm_remover);
+
+						lista_de_alunos.exibirLista();
+						System.out.printf("\nAluno Removido: %s", aluno_removido);
+						break;
+					case "7":
 						loop_principal = false;
 						break;
 					default:

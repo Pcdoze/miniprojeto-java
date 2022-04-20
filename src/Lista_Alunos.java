@@ -129,10 +129,26 @@ public class Lista_Alunos extends Aluno {
 	}
 	
 	public void exibirLista() {
-		for (int i = 0; i < tamanho; i++)
-			System.out.println(	"\nAluno " +(i + 1)
+		for (int i = 0; i < tamanho; i++){
+			System.out.print("\nAluno " +(i + 1)
 								+"\nNome: " +alunos[i].nome
-								+"\nRGM: " +alunos[i].rgm);
+								+"\nRGM: " +alunos[i].rgm
+								+"\nDisciplinas: ");
+			
+			Disciplina proxima_disciplina = null;
+			for(int j = 0; j < alunos[i].disciplinas.tamanhoDaLista(); j++){
+				if(j == 0){
+					System.out.printf("%s, ", alunos[i].disciplinas.primeira);
+					if(proxima_disciplina.proximo != null){
+						proxima_disciplina = alunos[i].disciplinas.primeira.proximo;
+					}
+				}
+				else{
+					System.out.printf("%s, ", proxima_disciplina);
+					proxima_disciplina = proxima_disciplina.proximo;
+				}
+			}
+		}
 	}
 	
 }
