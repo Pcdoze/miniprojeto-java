@@ -2,6 +2,7 @@ import java.util.Dictionary;
 import java.util.Scanner;
 
 public class Principal {
+	public static Lista_Alunos lista_de_alunos = null;
 	public static Scanner scanner_principal = new Scanner(System.in);
 
 	public static Lista_Alunos criarListaDeAlunos(){
@@ -39,9 +40,7 @@ public class Principal {
 
 		return lista_de_alunos;
 	}
-	public static Lista_Alunos cadastrarDisciplinas(Lista_Alunos lista_alunos){
-		Lista_Alunos lista_de_alunos = lista_alunos;
-
+	public static Lista_Alunos cadastrarDisciplinas(){
 		for(int i = 0; i < lista_de_alunos.tamanhoLista(); i++){
 
 			Lista_Disciplinas lista_de_disciplinas = new Lista_Disciplinas();
@@ -56,6 +55,16 @@ public class Principal {
 				Disciplina disciplina = new Disciplina();
 				disciplina.nome = entrada;
 				
+				if(entrada.compareTo("skip") == 0){
+					for(int j = i; j < 60; j++){
+						Disciplina disciplina_criada = new Disciplina();
+						disciplina.nome = "nome_"+Integer.toString(j+1);
+
+						lista_de_disciplinas.inserirNoFim(disciplina_criada);
+					}
+					i = 60;
+				}
+
 				System.out.printf("\nMais Disciplina? (s/n)");
 				String opcao = scanner_principal.nextLine();
 
@@ -87,8 +96,6 @@ public class Principal {
 		return lista_de_alunos;
 	}
 	public static void main(String[] args) {
-		Lista_Alunos lista_de_alunos = null;
-
 		boolean loop_principal = true;
 
 		while(loop_principal){
@@ -129,7 +136,7 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						break;
 					case "2":
-						cadastrarDisciplinas(lista_de_alunos);
+						cadastrarDisciplinas();
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":

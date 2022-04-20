@@ -5,6 +5,11 @@ public class Lista_Alunos extends Aluno {
 	Aluno[] alunos = new Aluno[60];
 	int tamanho = 0;
 	
+	public void copiarLista(Lista_Alunos lista_copiada) {
+		this.alunos = lista_copiada.alunos;
+		this.tamanho = lista_copiada.tamanho;
+	}
+
 	public boolean estaVazia() {
 		return(tamanho == 0);
 	}
@@ -136,8 +141,11 @@ public class Lista_Alunos extends Aluno {
 								+"\nDisciplinas: ");
 			
 			Disciplina proxima_disciplina = null;
-			for(int j = 0; j < alunos[i].disciplinas.tamanhoDaLista(); j++){
-				if(j == 0){
+			boolean final_da_lista = false;
+			int contador = 0;
+
+			while(!final_da_lista){
+				if(contador == 0){
 					System.out.printf("%s, ", alunos[i].disciplinas.primeira);
 					if(proxima_disciplina.proximo != null){
 						proxima_disciplina = alunos[i].disciplinas.primeira.proximo;
