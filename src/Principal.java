@@ -49,7 +49,7 @@ public class Principal {
 			int tamanho_da_lista = 0;
 
 			while(mais_disciplina){
-				System.out.printf("\nInserir nome da disciplina %d:", tamanho_da_lista+1);
+				System.out.printf("\nAluno: %s\nInserir nome da disciplina %d: ", lista_de_alunos.alunos[i].getNome(), tamanho_da_lista+1);
 				String entrada = scanner_principal.nextLine();
 				
 				Disciplina disciplina = new Disciplina();
@@ -59,6 +59,10 @@ public class Principal {
 						Disciplina disciplina_criada = new Disciplina();
 						disciplina_criada.nome = "Disciplina Nova";
 						disciplina.nome = "Disciplina Nova";
+
+						lista_de_alunos.alunos[j].disciplinas.primeira = null;
+						lista_de_alunos.alunos[j].disciplinas.ultima = null;
+						lista_de_alunos.alunos[j].disciplinas.tamanho = 0;
 
 						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
 						
@@ -131,11 +135,12 @@ public class Principal {
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
 										"\n\t2 - Cadastrar Disciplinas"+
-										"\n\t3 - Buscar na Lista de Alunos"+
-										"\n\t4 - Recriar Lista de Alunos"+
-										"\n\t5 - Adicionar Aluno"+
-										"\n\t6 - Remover Aluno"+
-										"\n\t7 - Sair");
+										"\n\t3 - Cadastrar Disciplinas por Aluno"+
+										"\n\t4 - Buscar na Lista de Alunos"+
+										"\n\t5 - Recriar Lista de Alunos"+
+										"\n\t6 - Adicionar Aluno"+
+										"\n\t7 - Remover Aluno"+
+										"\n\t8 - Sair");
 									
 				String opcao = scanner_principal.nextLine();
 
@@ -148,14 +153,19 @@ public class Principal {
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":
+						cadastrarDisciplinas();
+						System.out.println("Disciplinas Cadastradas");
+						break;
+					case "4":
+					    System.out.println("Digite o RGM: ");
 						String chave = scanner_principal.nextLine();
 						lista_de_alunos.buscaRGM(chave);
 						break;
-					case "4":
+					case "5":
 						lista_de_alunos = criarListaDeAlunos();
 						System.out.println("Lista de Alunos criada");
 						break;
-					case "5":
+					case "6":
 						System.out.println("Digite nome e RGM: (separados por espaço)");
 						
 						String resultado;
@@ -176,7 +186,7 @@ public class Principal {
 
 						System.out.println("\n"+resultado);
 						break;
-					case "6":
+					case "7":
 						System.out.println("Digite o RGM: ");
 						String rgm_remover = scanner_principal.nextLine();
 						
@@ -185,7 +195,7 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						System.out.printf("\nAluno Removido: %s", aluno_removido);
 						break;
-					case "7":
+					case "8":
 						loop_principal = false;
 						break;
 					default:
@@ -197,11 +207,12 @@ public class Principal {
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
 										"\n\t2 - Recadastrar Disciplinas"+
-										"\n\t3 - Buscar na Lista de Alunos"+
-										"\n\t4 - Recriar Lista de Alunos"+
-										"\n\t5 - Adicionar Aluno"+
-										"\n\t6 - Remover Aluno"+
-										"\n\t7 - Sair");
+										"\n\t3 - Cadastrar Disciplinas por Aluno"+
+										"\n\t4 - Buscar na Lista de Alunos"+
+										"\n\t5 - Recriar Lista de Alunos"+
+										"\n\t6 - Adicionar Aluno"+
+										"\n\t7 - Remover Aluno"+
+										"\n\t8 - Sair");
 									
 				String opcao = scanner_principal.nextLine();
 
@@ -209,15 +220,24 @@ public class Principal {
 					case "1":
 						lista_de_alunos.exibirLista();
 						break;
+					case "2":
+						cadastrarDisciplinas();
+						System.out.println("Disciplinas Cadastradas");
+						break;
 					case "3":
+						cadastrarDisciplinas();
+						System.out.println("Disciplinas Cadastradas");
+						break;
+					case "4":
+					    System.out.println("Digite o RGM: ");
 						String chave = scanner_principal.nextLine();
 						lista_de_alunos.buscaRGM(chave);
 						break;
-					case "4":
+					case "5":
 						lista_de_alunos = criarListaDeAlunos();
 						System.out.println("Lista de Alunos criada");
 						break;
-					case "5":
+					case "6":
 						System.out.println("Digite nome e RGM: (separados por espaço)");
 						
 						String resultado;
@@ -238,7 +258,7 @@ public class Principal {
 
 						System.out.println("\n"+resultado);
 						break;
-					case "6":
+					case "7":
 						System.out.println("Digite o RGM: ");
 						String rgm_remover = scanner_principal.nextLine();
 						
@@ -247,7 +267,7 @@ public class Principal {
 						lista_de_alunos.exibirLista();
 						System.out.printf("\nAluno Removido: %s", aluno_removido);
 						break;
-					case "7":
+					case "8":
 						loop_principal = false;
 						break;
 					default:

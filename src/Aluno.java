@@ -16,5 +16,6 @@ public class Aluno {
 	public void setRGM(String rgm) {
 		this.rgm = rgm;
 	}
+
 }
 
