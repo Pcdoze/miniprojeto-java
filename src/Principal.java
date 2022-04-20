@@ -1,3 +1,4 @@
+import java.util.Dictionary;
 import java.util.Scanner;
 
 public class Principal {
@@ -36,6 +37,53 @@ public class Principal {
 
 		lista_de_alunos.ordenarListaPorRGM();
 
+		return lista_de_alunos;
+	}
+	public static Lista_Alunos cadastrarDisciplinas(Lista_Alunos lista_alunos){
+		Lista_Alunos lista_de_alunos = lista_alunos;
+
+		for(int i = 0; i < lista_de_alunos.tamanhoLista(); i++){
+
+			Lista_Disciplinas lista_de_disciplinas = new Lista_Disciplinas();
+
+			boolean mais_disciplina = true;
+			int tamanho_da_lista = 0;
+
+			while(mais_disciplina){
+				System.out.printf("\nInserir nome da disciplina %d:", tamanho_da_lista+1);
+				String entrada = scanner_principal.nextLine();
+				
+				Disciplina disciplina = new Disciplina();
+				disciplina.nome = entrada;
+				
+				System.out.printf("\nMais Disciplina? (s/n)");
+				String opcao = scanner_principal.nextLine();
+
+				boolean entrada_invalida = true;
+				while(entrada_invalida){
+					if(opcao.compareTo("s") == 0 || opcao.compareTo("S") == 0){
+
+						lista_de_disciplinas.inserirNoFim(disciplina);
+						entrada_invalida = false;
+						mais_disciplina = true;
+						tamanho_da_lista++;
+					}
+					else if(opcao.compareTo("n") == 0 || opcao.compareTo("N") == 0){
+
+						lista_de_disciplinas.inserirNoFim(disciplina);
+						entrada_invalida = false;
+						mais_disciplina = false;
+						tamanho_da_lista++;
+					}
+					else{
+						System.out.println("Entrada Inválida");
+						entrada_invalida = true;
+					}
+				}
+			}
+
+			lista_de_alunos.disciplinas = lista_de_disciplinas;
+		}
 		return lista_de_alunos;
 	}
 	public static void main(String[] args) {
@@ -79,6 +127,10 @@ public class Principal {
 				switch (opcao) {
 					case "1":
 						lista_de_alunos.exibirLista();
+						break;
+					case "2":
+						cadastrarDisciplinas(lista_de_alunos);
+						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":
 						String chave = scanner_principal.nextLine();
