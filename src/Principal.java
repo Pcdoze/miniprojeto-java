@@ -53,20 +53,21 @@ public class Principal {
 				String entrada = scanner_principal.nextLine();
 				
 				Disciplina disciplina = new Disciplina();
-				disciplina.nome = entrada;
 				
 				if(entrada.compareTo("skip") == 0){
 					for(int j = i; j < 60; j++){
 						Disciplina disciplina_criada = new Disciplina();
+						disciplina_criada.nome = "Disciplina Nova";
 						disciplina.nome = "Disciplina Nova";
 
 						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
 						
-
-						System.out.println(lista_de_alunos.alunos[j].disciplinas.primeira.getNome());
 					}
 
 					i = lista_de_alunos.tamanhoLista()-1;
+				}
+				else{
+					disciplina.nome = entrada;
 				}
 
 				String opcao;
