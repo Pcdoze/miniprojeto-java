@@ -5,6 +5,11 @@ public class Lista_Alunos extends Aluno {
 	Aluno[] alunos = new Aluno[60];
 	int tamanho = 0;
 	
+	public void copiarLista(Lista_Alunos lista_copiada) {
+		this.alunos = lista_copiada.alunos;
+		this.tamanho = lista_copiada.tamanho;
+	}
+
 	public boolean estaVazia() {
 		return(tamanho == 0);
 	}
@@ -129,10 +134,14 @@ public class Lista_Alunos extends Aluno {
 	}
 	
 	public void exibirLista() {
-		for (int i = 0; i < tamanho; i++)
-			System.out.println(	"\nAluno " +(i + 1)
+		for (int i = 0; i < tamanho; i++){
+			System.out.print("\n\nAluno " +(i + 1)
 								+"\nNome: " +alunos[i].nome
-								+"\nRGM: " +alunos[i].rgm);
+								+"\nRGM: " +alunos[i].rgm
+								+"\nDisciplinas:\n");
+			
+			alunos[i].disciplinas.exibirLista();
+		}
 	}
 	
 }

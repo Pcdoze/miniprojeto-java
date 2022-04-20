@@ -2,7 +2,7 @@
 public class Aluno {
 	String nome;
 	String rgm;
-	Lista_Disciplinas disciplinas;
+	Lista_Disciplinas disciplinas = new Lista_Disciplinas();
 	
 	public String getNome() {
 		return nome;
@@ -16,5 +16,6 @@ public class Aluno {
 	public void setRGM(String rgm) {
 		this.rgm = rgm;
 	}
+
 }
 
