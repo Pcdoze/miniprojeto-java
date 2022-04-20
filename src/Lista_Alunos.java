@@ -135,7 +135,7 @@ public class Lista_Alunos extends Aluno {
 	
 	public void exibirLista() {
 		for (int i = 0; i < tamanho; i++){
-			System.out.print("\nAluno " +(i + 1)
+			System.out.print("\n\nAluno " +(i + 1)
 								+"\nNome: " +alunos[i].nome
 								+"\nRGM: " +alunos[i].rgm
 								+"\nDisciplinas: ");
@@ -146,8 +146,8 @@ public class Lista_Alunos extends Aluno {
 
 			while(!final_da_lista){
 				if(contador == 0){
-					System.out.printf("%s, ", alunos[i].disciplinas.primeira);
-					if(proxima_disciplina.proximo != null){
+					System.out.printf("%s, ", alunos[i].disciplinas.primeira.getNome());
+					if(proxima_disciplina != null){
 						proxima_disciplina = alunos[i].disciplinas.primeira.proximo;
 					}
 					else{
@@ -155,12 +155,15 @@ public class Lista_Alunos extends Aluno {
 					}
 				}
 				else{
-					System.out.printf("%s, ", proxima_disciplina);
-					proxima_disciplina = proxima_disciplina.proximo;
-					if(proxima_disciplina.getNome().compareTo(alunos[i].disciplinas.ultima.getNome()) == 0){
+					System.out.printf("%s, ", proxima_disciplina.getNome());
+					if(proxima_disciplina.proximo != null){
+						proxima_disciplina = proxima_disciplina.proximo;
+					}
+					else{
 						final_da_lista = true;
 					}
 				}
+				contador++;
 			}
 		}
 	}

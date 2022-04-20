@@ -58,12 +58,12 @@ public class Principal {
 				if(entrada.compareTo("skip") == 0){
 					for(int j = i; j < 60; j++){
 						Disciplina disciplina_criada = new Disciplina();
-						disciplina.nome = "nome_"+Integer.toString(j+1);
+						disciplina.nome = "Disciplina Nova";
 
-						lista_de_disciplinas.inserirNoFim(disciplina_criada);
+						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
+						
 
-						lista_de_alunos.alunos[j].disciplinas = new Lista_Disciplinas();
-						lista_de_alunos.alunos[j].disciplinas.copiarLista(lista_de_disciplinas);
+						System.out.println(lista_de_alunos.alunos[j].disciplinas.primeira.getNome());
 					}
 
 					i = lista_de_alunos.tamanhoLista()-1;
@@ -126,7 +126,7 @@ public class Principal {
 						break;
 				}
 			}
-			else if(lista_de_alunos.alunos[0].disciplinas == null){
+			else if(lista_de_alunos.alunos[0].disciplinas.tamanho == 0){
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
 										"\n\t2 - Cadastrar Disciplinas"+
