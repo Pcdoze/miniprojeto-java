@@ -138,33 +138,9 @@ public class Lista_Alunos extends Aluno {
 			System.out.print("\n\nAluno " +(i + 1)
 								+"\nNome: " +alunos[i].nome
 								+"\nRGM: " +alunos[i].rgm
-								+"\nDisciplinas: ");
+								+"\nDisciplinas:\n");
 			
-			Disciplina proxima_disciplina = null;
-			boolean final_da_lista = false;
-			int contador = 0;
-
-			while(!final_da_lista){
-				if(contador == 0){
-					System.out.printf("%s, ", alunos[i].disciplinas.primeira.getNome());
-					if(proxima_disciplina != null){
-						proxima_disciplina = alunos[i].disciplinas.primeira.proximo;
-					}
-					else{
-						final_da_lista = true;
-					}
-				}
-				else{
-					System.out.printf("%s, ", proxima_disciplina.getNome());
-					if(proxima_disciplina.proximo != null){
-						proxima_disciplina = proxima_disciplina.proximo;
-					}
-					else{
-						final_da_lista = true;
-					}
-				}
-				contador++;
-			}
+			alunos[i].disciplinas.exibirLista();
 		}
 	}
 	
