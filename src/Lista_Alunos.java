@@ -150,10 +150,16 @@ public class Lista_Alunos extends Aluno {
 					if(proxima_disciplina.proximo != null){
 						proxima_disciplina = alunos[i].disciplinas.primeira.proximo;
 					}
+					else{
+						final_da_lista = true;
+					}
 				}
 				else{
 					System.out.printf("%s, ", proxima_disciplina);
 					proxima_disciplina = proxima_disciplina.proximo;
+					if(proxima_disciplina.getNome().compareTo(alunos[i].disciplinas.ultima.getNome()) == 0){
+						final_da_lista = true;
+					}
 				}
 			}
 		}

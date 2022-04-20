@@ -61,15 +61,21 @@ public class Principal {
 						disciplina.nome = "nome_"+Integer.toString(j+1);
 
 						lista_de_disciplinas.inserirNoFim(disciplina_criada);
+
+						lista_de_alunos.alunos[j].disciplinas = new Lista_Disciplinas();
+						lista_de_alunos.alunos[j].disciplinas.copiarLista(lista_de_disciplinas);
 					}
-					i = 60;
+
+					i = lista_de_alunos.tamanhoLista()-1;
 				}
 
-				System.out.printf("\nMais Disciplina? (s/n)");
-				String opcao = scanner_principal.nextLine();
+				String opcao;
 
 				boolean entrada_invalida = true;
 				while(entrada_invalida){
+					System.out.printf("\nMais Disciplina? (s/n)");
+					opcao = scanner_principal.nextLine();
+
 					if(opcao.compareTo("s") == 0 || opcao.compareTo("S") == 0){
 
 						lista_de_disciplinas.inserirNoFim(disciplina);
@@ -91,7 +97,8 @@ public class Principal {
 				}
 			}
 
-			lista_de_alunos.disciplinas = lista_de_disciplinas;
+			lista_de_alunos.alunos[i].disciplinas = new Lista_Disciplinas();
+			lista_de_alunos.alunos[i].disciplinas.copiarLista(lista_de_disciplinas);
 		}
 		return lista_de_alunos;
 	}
