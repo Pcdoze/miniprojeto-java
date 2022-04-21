@@ -42,7 +42,7 @@ public class Lista_Alunos extends Aluno {
 	}
 	
 	public boolean Compara(Aluno c1, Aluno c2) {
-		return(c1.nome.equals(c2.nome));
+		return(c1.getNome().equals(c2.getNome()));
 	}
 	
 	public int retornarPosicao(Aluno Aluno) {
@@ -97,7 +97,7 @@ public class Lista_Alunos extends Aluno {
 		int pos = -1;
 
 		for(int i = 0; i < this.tamanho; i++){
-			if(this.alunos[i].rgm.compareTo(rgm) == 0){
+			if(this.alunos[i].getRGM().compareTo(rgm) == 0){
 				pos = i;
 			}
 		}
@@ -123,7 +123,7 @@ public class Lista_Alunos extends Aluno {
 
 		for(int x = 0; x < tamanho; x++){
 			for(int y = 0; y < tamanho; y++){
-				if(alunos[y].rgm.compareTo(lista_de_rgms[x]) == 0){
+				if(alunos[y].getRGM().compareTo(lista_de_rgms[x]) == 0){
 					lista_de_alunos_ordenada.inserirAluno(x, alunos[y]);
 				}
 			}
@@ -136,8 +136,8 @@ public class Lista_Alunos extends Aluno {
 	public void exibirLista() {
 		for (int i = 0; i < tamanho; i++){
 			System.out.print("\n\nAluno " +(i + 1)
-								+"\nNome: " +alunos[i].nome
-								+"\nRGM: " +alunos[i].rgm
+								+"\nNome: " +alunos[i].getNome()
+								+"\nRGM: " +alunos[i].getRGM()
 								+"\nDisciplinas:\n");
 			
 			alunos[i].disciplinas.exibirLista();

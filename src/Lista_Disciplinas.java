@@ -34,7 +34,7 @@ public class Lista_Disciplinas {
 		Disciplina temp = primeira;
 		if (!estaVazia()) {
 			for (int i = 0; i < tamanho; i++) {
-				System.out.println("Disciplina "+(i+1)+" | nome: "+temp.nome);
+				System.out.printf("\nDisciplina %d | nome: %s" , i+1, temp.nome);
 				temp = temp.proximo;
 			}
 		}
