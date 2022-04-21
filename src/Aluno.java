@@ -1,7 +1,6 @@
-
 public class Aluno {
-	String nome;
-	String rgm;
+	private String nome;
+	private String rgm;
 	Lista_Disciplinas disciplinas = new Lista_Disciplinas();
 	
 	public String getNome() {
@@ -17,5 +16,10 @@ public class Aluno {
 		this.rgm = rgm;
 	}
 
-}
+	public void cadastrarDisciplina(String nomeDisciplina){
+		Disciplina novaDisciplina = new Disciplina();
+		novaDisciplina.setNome(nomeDisciplina);
 
+		disciplinas.inserirNoFim(novaDisciplina);
+	}
+}

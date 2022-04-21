@@ -1,4 +1,3 @@
-import java.util.Dictionary;
 import java.util.Scanner;
 
 public class Principal {
@@ -6,25 +5,22 @@ public class Principal {
 	public static Scanner scanner_principal = new Scanner(System.in);
 
 	public static Lista_Alunos criarListaDeAlunos(){
-		Lista_Alunos lista_de_alunos = new Lista_Alunos();
-		
-		// criando lista de alunos
 		for(int i = 0; i < 60; i++){
 			System.out.printf("\nInserir nome e RGM de aluno %d: (separados por espaço) ", i+1);
 				String[] entrada = scanner_principal.nextLine().split(" ");
 				
 				if(entrada.length == 2){
 					Aluno aluno = new Aluno();
-					aluno.nome = entrada[0];
-					aluno.rgm = entrada[1];
+					aluno.setNome(entrada[0]);
+					aluno.setRGM(entrada[1]);
 
 					lista_de_alunos.inserirAluno(i, aluno);
 				}
 				else if(entrada[0].compareTo("skip") == 0){
 					for(int j = i; j < 60; j++){
 						Aluno aluno = new Aluno();
-						aluno.nome = "nome_"+Integer.toString(j+1);
-						aluno.rgm = String.format("%08d", j+1);
+						aluno.setNome("nome_"+Integer.toString(j+1));
+						aluno.setRGM(String.format("%08d", j+1));
 
 						lista_de_alunos.inserirAluno(i, aluno);
 					}
@@ -107,14 +103,20 @@ public class Principal {
 		}
 		return lista_de_alunos;
 	}
+	public static void cadastrarDisciplinasPorAluno(){
+
+	}
 	public static void main(String[] args) {
+		lista_de_alunos = new Lista_Alunos();
 		boolean loop_principal = true;
 
 		while(loop_principal){
-			if(lista_de_alunos == null){
+			if(lista_de_alunos.tamanho == 0){
 				System.out.println("\nSelecione uma opção:"+
 										"\n\t1 - Criar Lista de Alunos"+
-										"\n\t2 - Sair");
+										"\n\t2 - Adicionar Aluno"+
+										"\n\t3 - Remover Aluno"+
+										"\n\t4 - Sair");
 
 				String opcao = scanner_principal.nextLine();
 
@@ -124,6 +126,35 @@ public class Principal {
 						System.out.println("Lista de Alunos criada");
 						break;
 					case "2":
+						System.out.println("Digite nome e RGM: (separados por espaço)");
+							
+						String resultado = "";
+						String[] entrada = scanner_principal.nextLine().split(" ");
+						if(entrada.length == 2){
+							Aluno aluno = new Aluno();
+							aluno.setNome(entrada[0]);
+							aluno.setRGM(entrada[1]);
+
+							resultado = lista_de_alunos.inserirAluno(0, aluno);
+
+							lista_de_alunos.ordenarListaPorRGM();
+							lista_de_alunos.exibirLista();
+						}
+						else{
+							resultado = "Entrada Inválida";
+						}
+						System.out.println(resultado);
+					break;
+					case "3":
+						System.out.println("Digite o RGM: ");
+						String rgm_remover = scanner_principal.nextLine();
+						
+						String aluno_removido = lista_de_alunos.removerAlunoPorRGM(rgm_remover);
+
+						lista_de_alunos.exibirLista();
+						System.out.printf("\nAluno Removido: %s", aluno_removido);
+						break;
+					case "4":
 						loop_principal = false;
 						break;
 					default:
@@ -172,13 +203,13 @@ public class Principal {
 						String[] entrada = scanner_principal.nextLine().split(" ");
 						if(entrada.length == 2){
 							Aluno aluno = new Aluno();
-							aluno.nome = entrada[0];
-							aluno.rgm = entrada[1];
+							aluno.setNome(entrada[0]);
+							aluno.setRGM(entrada[1]);
 
 							resultado = lista_de_alunos.inserirAluno(0, aluno);
 
 							lista_de_alunos.ordenarListaPorRGM();
-						lista_de_alunos.exibirLista();
+							lista_de_alunos.exibirLista();
 						}
 						else{
 							resultado = "Entrada Inválida";
@@ -244,13 +275,13 @@ public class Principal {
 						String[] entrada = scanner_principal.nextLine().split(" ");
 						if(entrada.length == 2){
 							Aluno aluno = new Aluno();
-							aluno.nome = entrada[0];
-							aluno.rgm = entrada[1];
+							aluno.setNome(entrada[0]);
+							aluno.setRGM(entrada[1]);
 
 							resultado = lista_de_alunos.inserirAluno(0, aluno);
 
 							lista_de_alunos.ordenarListaPorRGM();
-						lista_de_alunos.exibirLista();
+							lista_de_alunos.exibirLista();
 						}
 						else{
 							resultado = "Entrada Inválida";
