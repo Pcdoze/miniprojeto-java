@@ -100,11 +100,12 @@ public class Principal {
 		}
 		return lista_de_alunos;
 	}
-	public static void cadastrarDisciplinasPorAluno(String rgm){
+	public static String cadastrarDisciplinasPorAluno(String rgm){
 		Aluno aluno = lista_de_alunos.buscaRGM(rgm);
-		aluno.disciplinas.clearLista();
 
 		if(aluno != null){
+			aluno.disciplinas.clearLista();
+
 			boolean mais_disciplina = true;
 
 			while(mais_disciplina){
@@ -119,18 +120,15 @@ public class Principal {
 				}
 				else if(opcao.compareTo("n") == 0){
 					mais_disciplina = false;
+					return "Disciplinas Cadastradas";
 				}
 				else{
 					System.out.println("Entrada Inválida!");
 					mais_disciplina = false;
 				}
 			}
-
-			System.out.println();
 		}
-		else{
-			System.out.println("\nAluno não existe");
-		}
+		return "Disciplinas Não Cadastradas";
 	}
 	public static void main(String[] args) {
 		lista_de_alunos = new Lista_Alunos();
@@ -213,9 +211,9 @@ public class Principal {
 						break;
 					case "3":
 						System.out.println("Digite o RGM do aluno: ");
-						cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
+						String retorno = cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
 
-						System.out.println("Disciplinas Cadastradas");
+						System.out.println(retorno);
 						break;
 					case "4":
 					    System.out.println("Digite o RGM: ");
@@ -288,9 +286,9 @@ public class Principal {
 						break;
 					case "3":
 						System.out.println("Digite o RGM do aluno: ");
-						cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
+						String retorno = cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
 
-						System.out.println("Disciplinas Cadastradas");
+						System.out.println(retorno);
 						break;
 					case "4":
 					    System.out.println("Digite o RGM: ");
