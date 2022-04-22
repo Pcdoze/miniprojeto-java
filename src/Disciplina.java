@@ -1,7 +1,7 @@
 
 public class Disciplina {
-	String	nome;
-	Disciplina	proximo;
+	private String	nome;
+	private Disciplina	proximo;
 	
 	public String getNome() {
 		return nome;
