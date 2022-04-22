@@ -30,15 +30,16 @@ public class Lista_Alunos extends Aluno {
 		return alunos[pos];
 	}
 	
-	public void buscaRGM(String chave) {
+	public Aluno buscaRGM(String chave) {
 
 		for(int i = 0; i < tamanho; i++) {
 			if(alunos[i].getRGM().compareTo(chave) == 0) {
 				System.out.println("Nome:\t" + alunos[i].getNome() + "\n");
-				return;
+				return alunos[i];
 			}
 		}
 		System.out.println("Aluno não existe\n");
+		return null;
 	}
 	
 	public boolean Compara(Aluno c1, Aluno c2) {
@@ -68,7 +69,7 @@ public class Lista_Alunos extends Aluno {
 		alunos[pos] = c1;
 		tamanho++;
 
-		return "Adicinado";
+		return "\nAdicinado!";
 	}
 	
 	public void deslocarParaEsquerda(int pos) {
@@ -138,7 +139,7 @@ public class Lista_Alunos extends Aluno {
 			System.out.print("\n\nAluno " +(i + 1)
 								+"\nNome: " +alunos[i].getNome()
 								+"\nRGM: " +alunos[i].getRGM()
-								+"\nDisciplinas:\n");
+								+"\nDisciplinas:");
 			
 			alunos[i].disciplinas.exibirLista();
 		}

@@ -1,9 +1,9 @@
 
 public class Lista_Disciplinas {
-
-	Disciplina	primeira = null;
-	Disciplina	ultima = null;
-	int		tamanho = 0;
+	
+	private Disciplina	primeira = null;
+	private Disciplina	ultima = null;
+	private int		tamanho = 0;
 	
 	public void copiarLista(Lista_Disciplinas lista_copiada) {
 		this.primeira = lista_copiada.primeira;
@@ -24,7 +24,7 @@ public class Lista_Disciplinas {
 		if (estaVazia())
 			primeira = ultima = a;
 		else {
-			ultima.proximo = a;
+			ultima.setProximo(a);
 			ultima = a;
 		}
 		tamanho++;
@@ -34,10 +34,15 @@ public class Lista_Disciplinas {
 		Disciplina temp = primeira;
 		if (!estaVazia()) {
 			for (int i = 0; i < tamanho; i++) {
-				System.out.printf("\nDisciplina %d | nome: %s" , i+1, temp.nome);
-				temp = temp.proximo;
+				System.out.printf("\nDisciplina %d | nome: %s" , i+1, temp.getNome());
+				temp = temp.getProximo();
 			}
 		}
+	}
+	public void clearLista() {
+		primeira = null;
+		ultima = null;
+		tamanho = 0;
 	}
 
 }
