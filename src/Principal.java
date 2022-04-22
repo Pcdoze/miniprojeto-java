@@ -104,7 +104,8 @@ public class Principal {
 		return lista_de_alunos;
 	}
 	public static void cadastrarDisciplinasPorAluno(){
-
+		System.out.println("Digite o nome da nova Disciplina: ");
+		scanner_principal.nextLine();
 	}
 	public static void main(String[] args) {
 		lista_de_alunos = new Lista_Alunos();
@@ -184,7 +185,7 @@ public class Principal {
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":
-						cadastrarDisciplinas();
+						cadastrarDisciplinasPorAluno();
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "4":
