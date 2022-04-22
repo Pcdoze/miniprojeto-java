@@ -56,10 +56,7 @@ public class Principal {
 						disciplina_criada.nome = "Disciplina Nova";
 						disciplina.nome = "Disciplina Nova";
 
-						lista_de_alunos.alunos[j].disciplinas.primeira = null;
-						lista_de_alunos.alunos[j].disciplinas.ultima = null;
-						lista_de_alunos.alunos[j].disciplinas.tamanho = 0;
-
+						lista_de_alunos.alunos[j].disciplinas.clearLista();
 						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
 						
 					}
@@ -103,9 +100,35 @@ public class Principal {
 		}
 		return lista_de_alunos;
 	}
-	public static void cadastrarDisciplinasPorAluno(){
-		System.out.println("Digite o nome da nova Disciplina: ");
-		scanner_principal.nextLine();
+	public static String cadastrarDisciplinasPorAluno(String rgm){
+		Aluno aluno = lista_de_alunos.buscaRGM(rgm);
+
+		if(aluno != null){
+			aluno.disciplinas.clearLista();
+
+			boolean mais_disciplina = true;
+
+			while(mais_disciplina){
+				System.out.println("Digite o nome da nova Disciplina: ");
+				aluno.cadastrarDisciplina(scanner_principal.nextLine());
+
+				System.out.println("Mais Disciplina? (s/n)");
+				String opcao = scanner_principal.nextLine();
+
+				if(opcao.compareTo("s") == 0){
+					mais_disciplina = true;
+				}
+				else if(opcao.compareTo("n") == 0){
+					mais_disciplina = false;
+					return "Disciplinas Cadastradas";
+				}
+				else{
+					System.out.println("Entrada Inválida!");
+					mais_disciplina = false;
+				}
+			}
+		}
+		return "Disciplinas Não Cadastradas";
 	}
 	public static void main(String[] args) {
 		lista_de_alunos = new Lista_Alunos();
@@ -113,7 +136,8 @@ public class Principal {
 
 		while(loop_principal){
 			if(lista_de_alunos.tamanho == 0){
-				System.out.println("\nSelecione uma opção:"+
+				System.out.println("\n__________________________________________\n"+
+										"\nSelecione uma opção:"+
 										"\n\t1 - Criar Lista de Alunos"+
 										"\n\t2 - Adicionar Aluno"+
 										"\n\t3 - Remover Aluno"+
@@ -163,8 +187,9 @@ public class Principal {
 						break;
 				}
 			}
-			else if(lista_de_alunos.alunos[0].disciplinas.tamanho == 0){
-				System.out.println("\nSelecione uma opção:"+
+			else if(lista_de_alunos.alunos[0].disciplinas.tamanhoDaLista() == 0){
+				System.out.println("\n__________________________________________\n"+
+										"\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
 										"\n\t2 - Cadastrar Disciplinas"+
 										"\n\t3 - Cadastrar Disciplinas por Aluno"+
@@ -185,8 +210,10 @@ public class Principal {
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":
-						cadastrarDisciplinasPorAluno();
-						System.out.println("Disciplinas Cadastradas");
+						System.out.println("Digite o RGM do aluno: ");
+						String retorno = cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
+
+						System.out.println(retorno);
 						break;
 					case "4":
 					    System.out.println("Digite o RGM: ");
@@ -236,7 +263,8 @@ public class Principal {
 				}
 			}
 			else{
-				System.out.println("\nSelecione uma opção:"+
+				System.out.println("\n__________________________________________\n"+
+										"\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
 										"\n\t2 - Recadastrar Disciplinas"+
 										"\n\t3 - Cadastrar Disciplinas por Aluno"+
@@ -257,8 +285,10 @@ public class Principal {
 						System.out.println("Disciplinas Cadastradas");
 						break;
 					case "3":
-						cadastrarDisciplinas();
-						System.out.println("Disciplinas Cadastradas");
+						System.out.println("Digite o RGM do aluno: ");
+						String retorno = cadastrarDisciplinasPorAluno(scanner_principal.nextLine());
+
+						System.out.println(retorno);
 						break;
 					case "4":
 					    System.out.println("Digite o RGM: ");
