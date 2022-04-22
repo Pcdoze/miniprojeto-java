@@ -56,10 +56,7 @@ public class Principal {
 						disciplina_criada.nome = "Disciplina Nova";
 						disciplina.nome = "Disciplina Nova";
 
-						lista_de_alunos.alunos[j].disciplinas.primeira = null;
-						lista_de_alunos.alunos[j].disciplinas.ultima = null;
-						lista_de_alunos.alunos[j].disciplinas.tamanho = 0;
-
+						lista_de_alunos.alunos[j].disciplinas.clearLista();
 						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
 						
 					}
@@ -105,6 +102,7 @@ public class Principal {
 	}
 	public static void cadastrarDisciplinasPorAluno(String rgm){
 		Aluno aluno = lista_de_alunos.buscaRGM(rgm);
+		aluno.disciplinas.clearLista();
 
 		if(aluno != null){
 			boolean mais_disciplina = true;
@@ -191,7 +189,7 @@ public class Principal {
 						break;
 				}
 			}
-			else if(lista_de_alunos.alunos[0].disciplinas.tamanho == 0){
+			else if(lista_de_alunos.alunos[0].disciplinas.tamanhoDaLista() == 0){
 				System.out.println("\n__________________________________________\n"+
 										"\nSelecione uma opção:"+
 										"\n\t1 - Ver Lista de Alunos"+
