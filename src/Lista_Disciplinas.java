@@ -34,7 +34,7 @@ public class Lista_Disciplinas {
 		Disciplina temp = primeira;
 		if (!estaVazia()) {
 			for (int i = 0; i < tamanho; i++) {
-				System.out.printf("\nDisciplina %d | nome: %s" , i+1, temp.getNome());
+				System.out.printf("\nDisciplina %d | nome: %s\tnota %f" , i+1, temp.getNome(), temp.getNota());
 				temp = temp.getProximo();
 			}
 		}

@@ -17,10 +17,19 @@ public class Aluno {
 		this.rgm = rgm;
 	}
 
-	public void cadastrarDisciplina(String nomeDisciplina){
+	public boolean cadastrarDisciplina(String[] entrada){
 		Disciplina novaDisciplina = new Disciplina();
 
-		novaDisciplina.setNome(nomeDisciplina);
-		disciplinas.inserirNoFim(novaDisciplina);
+		try{
+			novaDisciplina.setNome(entrada[0]);
+			novaDisciplina.setNota(Float.parseFloat(entrada[1]));
+
+			disciplinas.inserirNoFim(novaDisciplina);
+		}
+		catch (Exception e){
+			return false;
+		}
+
+		return true;
 	}
 }
