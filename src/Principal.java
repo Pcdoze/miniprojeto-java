@@ -6,96 +6,26 @@ public class Principal {
 
 	public static Lista_Alunos criarListaDeAlunos(){
 		for(int i = 0; i < 60; i++){
-			System.out.printf("\nInserir nome e RGM de aluno %d: (separados por espaço) ", i+1);
-			String[] entrada = scanner_principal.nextLine().split(" ");
-				
-				if(entrada.length == 2){
-					Aluno aluno = new Aluno();
-					aluno.setNome(entrada[0]);
-					aluno.setRGM(entrada[1]);
+			Aluno aluno = new Aluno();
+			aluno.setNome("nome_"+Integer.toString(i+1));
+			aluno.setRGM(String.format("%08d", i+1));
 
-					lista_de_alunos.inserirAluno(i, aluno);
-				}
-				else if(entrada[0].compareTo("skip") == 0){
-					for(int j = i; j < 60; j++){
-						Aluno aluno = new Aluno();
-						aluno.setNome("nome_"+Integer.toString(j+1));
-						aluno.setRGM(String.format("%08d", j+1));
-
-						lista_de_alunos.inserirAluno(i, aluno);
-					}
-					i = 60;
-				}
-				else{
-					System.out.println("\nEntrada Invalida");
-					i--;
-				}
+			lista_de_alunos.inserirAluno(i, aluno);
 		}
-
-		lista_de_alunos.ordenarListaPorRGM();
 
 		return lista_de_alunos;
 	}
 	public static Lista_Alunos cadastrarDisciplinas(){
 		for(int i = 0; i < lista_de_alunos.tamanhoLista(); i++){
+			Disciplina disciplina_criada = new Disciplina();
+			disciplina_criada.setNome("Disciplina Nova");
+			disciplina_criada.setNota(0.0f);
 
-			Lista_Disciplinas lista_de_disciplinas = new Lista_Disciplinas();
-
-			boolean mais_disciplina = true;
-
-			while(mais_disciplina){
-				System.out.printf("\nAluno: %s\nInserir nome e nota da disciplina %d: (separados por espaço)", lista_de_alunos.alunos[i].getNome(), i+1);
-				String[] entrada = scanner_principal.nextLine().split(" ");
-				
-				Disciplina disciplina = new Disciplina();
-				
-				if(entrada[0].compareTo("skip") == 0){
-					disciplina.setNome("Disciplina Nova");
-					for(int j = i; j < 60; j++){
-						Disciplina disciplina_criada = new Disciplina();
-						disciplina_criada.setNome("Disciplina Nova");
-						disciplina_criada.setNota(0.0f);
-
-						lista_de_alunos.alunos[j].disciplinas.clearLista();
-						lista_de_alunos.alunos[j].disciplinas.inserirNoFim(disciplina_criada);
-						
-					}
-					i = lista_de_alunos.tamanhoLista()-1;
-				}
-				else if(entrada.length == 2){
-					disciplina.setNome(entrada[0]);
-					disciplina.setNota(Float.parseFloat(entrada[1]));
-				}
-
-				String opcao;
-
-				boolean entrada_invalida = true;
-				while(entrada_invalida){
-					System.out.printf("\nMais Disciplina? (s/n)");
-					opcao = scanner_principal.nextLine();
-
-					if(opcao.compareTo("s") == 0 || opcao.compareTo("S") == 0){
-
-						lista_de_disciplinas.inserirNoFim(disciplina);
-						entrada_invalida = false;
-						mais_disciplina = true;
-					}
-					else if(opcao.compareTo("n") == 0 || opcao.compareTo("N") == 0){
-
-						lista_de_disciplinas.inserirNoFim(disciplina);
-						entrada_invalida = false;
-						mais_disciplina = false;
-					}
-					else{
-						System.out.println("Entrada Inválida");
-						entrada_invalida = true;
-					}
-				}
-			}
-
-			lista_de_alunos.alunos[i].disciplinas = new Lista_Disciplinas();
-			lista_de_alunos.alunos[i].disciplinas.copiarLista(lista_de_disciplinas);
+			lista_de_alunos.alunos[i].disciplinas.clearLista();
+			lista_de_alunos.alunos[i].disciplinas.inserirNoFim(disciplina_criada);
+			
 		}
+		
 		return lista_de_alunos;
 	}
 	public static String cadastrarDisciplinasPorAluno(String rgm){
