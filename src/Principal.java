@@ -92,9 +92,7 @@ public class Principal {
 							aluno.setNome(entrada[0]);
 							aluno.setRGM(entrada[1]);
 
-							resultado = lista_de_alunos.inserirAluno(0, aluno);
-
-							lista_de_alunos.ordenarListaPorRGM();
+							resultado = lista_de_alunos.InserirAlunoPorRGM(aluno);
 							lista_de_alunos.exibirLista();
 						}
 						else{
@@ -157,9 +155,7 @@ public class Principal {
 							aluno.setNome(entrada[0]);
 							aluno.setRGM(entrada[1]);
 
-							resultado = lista_de_alunos.inserirAluno(0, aluno);
-
-							lista_de_alunos.ordenarListaPorRGM();
+							resultado = lista_de_alunos.InserirAlunoPorRGM(aluno);
 							lista_de_alunos.exibirLista();
 						}
 						else{
@@ -232,9 +228,7 @@ public class Principal {
 							aluno.setNome(entrada[0]);
 							aluno.setRGM(entrada[1]);
 
-							resultado = lista_de_alunos.inserirAluno(0, aluno);
-
-							lista_de_alunos.ordenarListaPorRGM();
+							resultado = lista_de_alunos.InserirAlunoPorRGM(aluno);
 							lista_de_alunos.exibirLista();
 						}
 						else{
