@@ -5,11 +5,6 @@ public class Lista_Disciplinas {
 	private Disciplina	ultima = null;
 	private int		tamanho = 0;
 	
-	public void copiarLista(Lista_Disciplinas lista_copiada) {
-		this.primeira = lista_copiada.primeira;
-		this.ultima = lista_copiada.ultima;
-		this.tamanho = lista_copiada.tamanho;
-	}
 	public boolean estaVazia() {
 		if (tamanho == 0)
 			return true;

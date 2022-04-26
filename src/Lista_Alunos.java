@@ -1,15 +1,8 @@
-import java.util.Arrays;
-
 public class Lista_Alunos extends Aluno {
 
 	Aluno[] alunos = new Aluno[60];
 	int tamanho = 0;
 	
-	public void copiarLista(Lista_Alunos lista_copiada) {
-		this.alunos = lista_copiada.alunos;
-		this.tamanho = lista_copiada.tamanho;
-	}
-
 	public boolean estaVazia() {
 		return(tamanho == 0);
 	}
@@ -71,6 +64,21 @@ public class Lista_Alunos extends Aluno {
 
 		return "\nAdicinado!";
 	}
+	public String InserirAlunoPorRGM(Aluno aluno){
+		int pos = -1;
+
+		for(int i = tamanhoLista()-1; i >= 0; i--){
+			System.out.println(i);
+			if(aluno.getRGM().compareTo(alunos[i].getRGM()) < 0){
+				pos = i;
+			}
+		}
+		if(pos == -1){
+			pos = tamanhoLista();
+		}
+
+		return inserirAluno(pos, aluno);
+	}
 	
 	public void deslocarParaEsquerda(int pos) {
 		for (int i = pos; i < (tamanho - 1); i++)
@@ -89,6 +97,7 @@ public class Lista_Alunos extends Aluno {
 		if ((pos > tamanho) || (pos < 0))
 			return null;
 		Aluno aux = alunos[pos];
+		aux.disciplinas.clearLista();
 		deslocarParaEsquerda(pos);
 		tamanho--;
 		return aux;
@@ -106,11 +115,14 @@ public class Lista_Alunos extends Aluno {
 		if ((pos > tamanho) || (pos < 0))
 			return "RGM não existe";
 		Aluno aux = alunos[pos];
+
+		aux.disciplinas.clearLista();
+
 		deslocarParaEsquerda(pos);
 		tamanho--;
 		return aux.getRGM();
 	}
-
+/*
 	public void ordenarListaPorRGM() {
 		String[] lista_de_rgms = new String[tamanho];
 
@@ -133,7 +145,7 @@ public class Lista_Alunos extends Aluno {
 		this.alunos = lista_de_alunos_ordenada.alunos;
 		this.tamanho = lista_de_alunos_ordenada.tamanho;
 	}
-	
+*/
 	public void exibirLista() {
 		for (int i = 0; i < tamanho; i++){
 			System.out.print("\n\nAluno " +(i + 1)
